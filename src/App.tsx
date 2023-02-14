@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import IconBar from './Design_Patterns/Menus/IconBar/IconBar';
+import IconBar from './Design_Patterns/Menus/Accordion/Accordion';
 
 function App() {
   return (
