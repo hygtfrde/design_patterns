@@ -5,7 +5,6 @@ import './accordion_styles.css';
 const Accordion = () => {
     interface HTMLMouseEvent {
         target: any;
-
     }
 
     const clicky = (el: HTMLMouseEvent) => {;
