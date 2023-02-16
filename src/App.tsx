@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import IconBar from './Design_Patterns/Menus/Accordion/Accordion';
+import Pattern from './Design_Patterns/Menus/Tabs/Tabs';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
       <h1>Design Patterns</h1>
       </header>
-      <IconBar/>
+      <Pattern/>
     </div>
   );
 }

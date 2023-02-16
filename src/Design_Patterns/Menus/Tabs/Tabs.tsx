@@ -2,28 +2,31 @@ import React from "react";
 import './tabs_styles.css';
 
 const Tabs = () => {
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
+
+    const openCity = (e: any) => {
+      const city = e.target.innerHTML;
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      // for (i = 0; i < tabcontent.length; i++) {
+      //   tabcontent[i].style.display = "none";
+      // }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(city).style.display = "block";
+      e.currentTarget.className += " active";
+        return 0
       }
     return (
-        <div>
+        <div className="container">
             <h2>Tabs</h2>
             <p>Click on the buttons inside the tabbed menu:</p>
 
             <div className="tab">
-            <button className="tablinks" onclick="openCity(event, 'London')">London</button>
-            <button className="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-            <button className="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+              <button className="tablinks" onClick={openCity}>London</button>
+              <button className="tablinks" onClick={openCity}>Paris</button>
+              <button className="tablinks" onClick={openCity}>Tokyo</button>
             </div>
 
             <div id="London" className="tabcontent">
