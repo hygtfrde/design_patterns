@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Pattern from './Design_Patterns/Menus/VerticalTabs/VerticalTabs';
+import Pattern from './Design_Patterns/Menus/TabHeaders/TabHeaders';
 
 function App() {
   return (

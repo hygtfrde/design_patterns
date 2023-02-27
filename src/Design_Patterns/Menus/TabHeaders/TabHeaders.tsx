@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import './tab_headers_styles.css'
 
 const TabHeaders = () => {
@@ -9,18 +9,7 @@ const TabHeaders = () => {
     }
     
     const openTab = (e: any) => {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(cityName).style.display = "block";
-        elmnt.style.backgroundColor = color;
-        return 0
+
     }
     return (
         <div className="container">
@@ -46,10 +35,10 @@ const TabHeaders = () => {
                 <p>Oslo is the capital of Norway.</p>
             </div>
 
-            <button className="tablink" onClick={openTab('London')} id="defaultOpen">London</button>
-            <button className="tablink" onClick={openTab('Paris')}>Paris</button>
-            <button className="tablink" onClick={openTab('Tokyo')}>Tokyo</button>
-            <button className="tablink" onClick={openTab('Oslo')}>Oslo</button>
+            <button className="tablink" onClick={()=>openTab('London')} id="defaultOpen">London</button>
+            <button className="tablink" onClick={()=>openTab('Paris')}>Paris</button>
+            <button className="tablink" onClick={()=>openTab('Tokyo')}>Tokyo</button>
+            <button className="tablink" onClick={()=>openTab('Oslo')}>Oslo</button>
         </div>
     )
 }
