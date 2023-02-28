@@ -7,9 +7,11 @@ const TabHeaders = () => {
         length: number;
         [i: number]: any
     }
-    
-    const openTab = (e: any) => {
 
+    const LondonRef = useRef(null)
+    
+    const openTab = (city: string) => {
+        console.log(city)
     }
     return (
         <div className="container">
@@ -35,10 +37,10 @@ const TabHeaders = () => {
                 <p>Oslo is the capital of Norway.</p>
             </div>
 
-            <button className="tablink" onClick={()=>openTab('London')} id="defaultOpen">London</button>
-            <button className="tablink" onClick={()=>openTab('Paris')}>Paris</button>
-            <button className="tablink" onClick={()=>openTab('Tokyo')}>Tokyo</button>
-            <button className="tablink" onClick={()=>openTab('Oslo')}>Oslo</button>
+            <button className="tablink" onClick={()=>openTab('London')} ref={LondonRef} id="London">London</button>
+            <button className="tablink" onClick={()=>openTab('Paris')} id="Paris">Paris</button>
+            <button className="tablink" onClick={()=>openTab('Tokyo')} id="Tokyo">Tokyo</button>
+            <button className="tablink" onClick={()=>openTab('Oslo')} id="Oslo">Oslo</button>
         </div>
     )
 }
