@@ -1,6 +1,6 @@
 body {font-family: "Lato", sans-serif;}
 
-.tablink {
+.tabLink {
   background-color: #555;
   color: white;
   float: left;
@@ -12,14 +12,13 @@ body {font-family: "Lato", sans-serif;}
   width: 25%;
 }
 
-.tablink:hover {
+.tabLink:hover {
   background-color: #777;
 }
 
 /* Style the tab content */
-.tabcontent {
+.tabContent {
   color: white;
-  display: none;
   padding: 50px;
   text-align: center;
 }
