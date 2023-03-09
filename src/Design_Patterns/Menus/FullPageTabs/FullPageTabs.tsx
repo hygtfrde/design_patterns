@@ -2,12 +2,31 @@ import React from "react";
 import './full_page_tabs_styles.css'
 
 const FullPageHeaders = () => {
+    interface TabContent extends HTMLElement {
+        style: any;
+        length: number;
+        [i: number]: any
+    }
+    function openPage(pageName: any, color: any) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent") as unknown as TabContent;
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink") as unknown as TabContent;
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName)!.style.display = "block";
+      }
+      
+      // Get the element with id="defaultOpen" and click on it
     return (
         <div>
-            <button className="tablink" onClick="openPage('Home', this, 'red')">Home</button>
-            <button className="tablink" onClick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-            <button className="tablink" onClick="openPage('Contact', this, 'blue')">Contact</button>
-            <button className="tablink" onClick="openPage('About', this, 'orange')">About</button>
+            <button className="tablink" onClick={()=>openPage('Home', 'red')}>Home</button>
+            <button className="tablink" onClick={()=>openPage('News', 'green')} id="defaultOpen">News</button>
+            <button className="tablink" onClick={()=>openPage('Contact', 'blue')}>Contact</button>
+            <button className="tablink" onClick={()=>openPage('About', 'orange')}>About</button>
 
             <div id="Home" className="tabcontent">
             <h3>Home</h3>
