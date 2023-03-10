@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Pattern from './Design_Patterns/Menus/FullPageTabs/FullPageTabs';
+import Pattern from './Design_Patterns/Menus/HoverTabs/HoverTabs';
 
 function App() {
   return (
