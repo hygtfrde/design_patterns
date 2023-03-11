@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Pattern from './Design_Patterns/Menus/HoverTabs/HoverTabs';
+import Pattern from './Design_Patterns/Menus/SearchMenu/SearchMenu';
 
 function App() {
   return (
