@@ -14,7 +14,9 @@ const SearchMenu = () => {
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName("a")[0];
             if (filter !== undefined && a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                console.log('===> ', a.innerHTML.toUpperCase().indexOf(filter))
+                li[i].style.display = "block";
+                console.log('---> ', li[i])
             } 
             else {
                 li[i].style.display = "none";
