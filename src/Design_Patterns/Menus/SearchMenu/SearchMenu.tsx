@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useRef} from "react";
 import './search_menu_styles.css';
 
 const SearchMenu = () => {
     interface InputValue {
         value?: string;
     }
-    function searchFunction() {
+    const vanillaSearchFunction = () => {
         var input, filter: string|undefined, ul, li, a, i;
         input = document.getElementById("mySearch") as InputValue;
         filter = input?.value?.toUpperCase();
@@ -14,12 +14,29 @@ const SearchMenu = () => {
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName("a")[0];
             if (filter !== undefined && a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                console.log('===> ', a.innerHTML.toUpperCase().indexOf(filter))
                 li[i].style.display = "block";
-                console.log('---> ', li[i])
             } 
             else {
                 li[i].style.display = "none";
+            }
+        }
+    }
+    const searchRef = useRef<HTMLInputElement>(null);
+    const menuRef = useRef<HTMLUListElement>(null);
+    const hotSearchFunction = () => {
+
+        let filter, ul, li, a, i;
+
+        const inputValue = searchRef?.current?.value.toUpperCase();
+        const liAnchors: any = menuRef?.current?.childNodes;
+        const liCount = menuRef.current? menuRef.current.childElementCount : 0;
+        for (i = 0; i < liCount; i++) {
+            let anchorText = liAnchors[i].childNodes[0].textContent.toUpperCase();
+            if (inputValue !== undefined && anchorText.indexOf(inputValue) > -1) {
+                liAnchors[i].style.display = "block";
+            } 
+            else {
+                liAnchors[i].style.display = "none";
             }
         }
     }
@@ -31,8 +48,9 @@ const SearchMenu = () => {
             <div className="row">
             <div className="left" style={{backgroundColor: "#bbb"}}>
                 <h2>Menu</h2>
-                <input type="text" id="mySearch" onKeyUp={()=>searchFunction()} placeholder="Search.." title="Type in a category"/>
-                <ul id="myMenu">
+                <button onClick={hotSearchFunction}>click</button>
+                <input ref={searchRef} type="text" id="mySearch" onKeyUp={()=>hotSearchFunction()} placeholder="Search..." />
+                <ul ref={menuRef} id="myMenu">
                     <li><a href="#">HTML</a></li>
                     <li><a href="#">CSS</a></li>
                     <li><a href="#">JavaScript</a></li>
