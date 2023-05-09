@@ -24,13 +24,10 @@ const SearchMenu = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const menuRef = useRef<HTMLUListElement>(null);
     const hotSearchFunction = () => {
-
-        let filter, ul, li, a, i;
-
         const inputValue = searchRef?.current?.value.toUpperCase();
         const liAnchors: any = menuRef?.current?.childNodes;
         const liCount = menuRef.current? menuRef.current.childElementCount : 0;
-        for (i = 0; i < liCount; i++) {
+        for (let i = 0; i < liCount; i++) {
             let anchorText = liAnchors[i].childNodes[0].textContent.toUpperCase();
             if (inputValue !== undefined && anchorText.indexOf(inputValue) > -1) {
                 liAnchors[i].style.display = "block";
