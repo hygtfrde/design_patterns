@@ -4,18 +4,24 @@ import './side_navigation_styles.css';
 const SideNavigation = () => {
     const sideNav: React.LegacyRef<HTMLDivElement> | undefined = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [countSideNav, setCountSideNav] = useState<number>(0);
+    const [countIsOpen, setCountIsOpen] = useState<number>(0);
 
     useEffect(() => {
-        // Add the event listener when the component mounts
+        console.log('countIsOpen ', countIsOpen)
+        setCountIsOpen(countIsOpen+1)
+
         sideNav.current && sideNav.current.addEventListener('click', sideNavClick);
 
-        // Clean up the event listener when the component unmounts
         return () => {
             sideNav.current && sideNav.current.removeEventListener('click', sideNavClick);
         };
-    }, [isOpen]); // Empty dependency array ensures the effect runs only once
+    }, [isOpen]);
 
     useEffect(() => {
+        console.log('countSideNav ', countSideNav)
+        setCountSideNav(countSideNav+1)
+
         document.addEventListener('click', pageOutsideClick);
         return () => {
             document.removeEventListener('click', pageOutsideClick);
@@ -35,6 +41,7 @@ const SideNavigation = () => {
         }    
     }
 
+    // Function to handle clicks outside of the element
     const sideNavClick = (event: { stopPropagation: () => void, target: any }) => {
         if (sideNav.current && sideNav.current.contains(event.target)) {
             console.log('MOCK NAV ANALYTICS INVOKED - clicked sideNav - ####')
@@ -47,7 +54,6 @@ const SideNavigation = () => {
             hotCloseNav();
         }
     }
-    
     const hotOpenNav = () => {
         console.log('OPEN')
         setIsOpen(prevState => true);
