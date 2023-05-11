@@ -4,13 +4,8 @@ import './side_navigation_styles.css';
 const SideNavigation = () => {
     const sideNav: React.LegacyRef<HTMLDivElement> | undefined = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [countSideNav, setCountSideNav] = useState<number>(0);
-    const [countIsOpen, setCountIsOpen] = useState<number>(0);
 
     useEffect(() => {
-        console.log('countIsOpen ', countIsOpen)
-        setCountIsOpen(countIsOpen+1)
-
         // Add the event listener when the component mounts
         sideNav.current && sideNav.current.addEventListener('click', sideNavClick);
 
@@ -21,9 +16,6 @@ const SideNavigation = () => {
     }, [isOpen]); // Empty dependency array ensures the effect runs only once
 
     useEffect(() => {
-        console.log('countSideNav ', countSideNav)
-        setCountSideNav(countSideNav+1)
-
         document.addEventListener('click', pageOutsideClick);
         return () => {
             document.removeEventListener('click', pageOutsideClick);
@@ -43,25 +35,19 @@ const SideNavigation = () => {
         }    
     }
 
-    // Function to handle clicks outside of the element
     const sideNavClick = (event: { stopPropagation: () => void, target: any }) => {
         if (sideNav.current && sideNav.current.contains(event.target)) {
-            // if (!isOpen) {
-            //     console.log('RETURN')
-            //     return; // Early return if the sideNav is already closed
-            // }
-            // hotCloseNav();
             console.log('MOCK NAV ANALYTICS INVOKED - clicked sideNav - ####')
         }
     };
     const pageOutsideClick = (event: MouseEvent) => {
         if (!isOpen) return;
         else if (sideNav.current && !sideNav.current.contains(event.target as Node)) {
-            // Click happened outside of sideNav
             console.log('Clicked OUTSIDE of sideNav');
             hotCloseNav();
         }
     }
+    
     const hotOpenNav = () => {
         console.log('OPEN')
         setIsOpen(prevState => true);
