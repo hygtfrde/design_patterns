@@ -4,25 +4,22 @@ import './side_navigation_styles.css';
 const SideNavigation = () => {
     const sideNav: React.LegacyRef<HTMLDivElement> | undefined = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [countSideNav, setCountSideNav] = useState<number>(0);
-    const [countIsOpen, setCountIsOpen] = useState<number>(0);
+    const [shouldExecuteOutsideClick, setShouldExecuteOutsideClick] = useState<boolean>(true);
 
     useEffect(() => {
-        console.log('countIsOpen ', countIsOpen)
-        setCountIsOpen(countIsOpen+1)
-
-        sideNav.current && sideNav.current.addEventListener('click', sideNavClick);
-
+        setShouldExecuteOutsideClick(!shouldExecuteOutsideClick);
+        if (isOpen) {
+            sideNav.current?.addEventListener("click", sideNavClick);
+        }
         return () => {
             sideNav.current && sideNav.current.removeEventListener('click', sideNavClick);
         };
     }, [isOpen]);
 
     useEffect(() => {
-        console.log('countSideNav ', countSideNav)
-        setCountSideNav(countSideNav+1)
-
-        document.addEventListener('click', pageOutsideClick);
+        if (shouldExecuteOutsideClick) {
+            document.addEventListener('click', pageOutsideClick);
+        }
         return () => {
             document.removeEventListener('click', pageOutsideClick);
         };
@@ -42,18 +39,20 @@ const SideNavigation = () => {
     }
 
     // Function to handle clicks outside of the element
-    const sideNavClick = (event: { stopPropagation: () => void, target: any }) => {
-        if (sideNav.current && sideNav.current.contains(event.target)) {
+    const sideNavClick = (event?: { stopPropagation: () => void, target: any }) => {
+        if (sideNav.current && sideNav.current.contains(event?.target)) {
             console.log('MOCK NAV ANALYTICS INVOKED - clicked sideNav - ####')
+            event?.stopPropagation(); // Stop event propagation
         }
     };
     const pageOutsideClick = (event: MouseEvent) => {
         if (!isOpen) return;
-        else if (sideNav.current && !sideNav.current.contains(event.target as Node)) {
+        if (sideNav.current && !sideNav.current.contains(event.target as Node)) {
             console.log('Clicked OUTSIDE of sideNav');
             hotCloseNav();
         }
     }
+
     const hotOpenNav = () => {
         console.log('OPEN')
         setIsOpen(prevState => true);
@@ -61,6 +60,15 @@ const SideNavigation = () => {
     const hotCloseNav = () => {
         console.log('CLOSE')
         setIsOpen(prevState => false);
+    }
+
+
+    const testClick = () => {
+        console.log('=============================')
+        console.log('isOpen ', isOpen)
+        console.log('sideNav.current ', sideNav.current)
+        console.log('shouldExecuteOutsideClick ', shouldExecuteOutsideClick)
+        console.log('=============================')
     }
 
     return (
@@ -79,6 +87,7 @@ const SideNavigation = () => {
             <h2>Animated Sidenav Example</h2>
             <p>Click on the element below to open the side navigation menu.</p>
             <span style={{fontSize: '30px', cursor: 'pointer'}} onClick={()=>hotOpenNav()}>&#9776; open</span>
+            <button onClick={testClick}>test</button>
         </div>
     )
 }
