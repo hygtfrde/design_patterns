@@ -61,15 +61,6 @@ const SideNavigation = () => {
         setIsOpen(prevState => false);
     }
 
-
-    const testClick = () => {
-        console.log('=============================')
-        console.log('isOpen ', isOpen)
-        console.log('sideNav.current ', sideNav.current)
-        console.log('shouldExecuteOutsideClick ', shouldExecuteOutsideClick)
-        console.log('=============================')
-    }
-
     return (
         <div>
             {
@@ -86,7 +77,6 @@ const SideNavigation = () => {
             <h2>Animated Sidenav Example</h2>
             <p>Click on the element below to open the side navigation menu.</p>
             <span style={{fontSize: '30px', cursor: 'pointer'}} onClick={()=>hotOpenNav()}>&#9776; open</span>
-            <button onClick={testClick}>test</button>
         </div>
     )
 }
