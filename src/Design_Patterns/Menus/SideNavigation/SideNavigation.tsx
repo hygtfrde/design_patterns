@@ -39,10 +39,9 @@ const SideNavigation = () => {
     }
 
     // Function to handle clicks outside of the element
-    const sideNavClick = (event?: { stopPropagation: () => void, target: any }) => {
+    const sideNavClick = (event?: { target: any }) => {
         if (sideNav.current && sideNav.current.contains(event?.target)) {
             console.log('MOCK NAV ANALYTICS INVOKED - clicked sideNav - ####')
-            event?.stopPropagation(); // Stop event propagation
         }
     };
     const pageOutsideClick = (event: MouseEvent) => {
