@@ -1,0 +1,17 @@
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    padding: 10px 0;
+    /* Add any other styles you want for the sticky header */
+  }
+  
+  .sticky-header h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 24px;
+    color: #333333;
+    /* Add any other styles for the header title */
+  }
+  

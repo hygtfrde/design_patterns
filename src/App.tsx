@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Pattern from './Design_Patterns/Menus/SideNavigation/SideNavigation';
+import Pattern from './Design_Patterns/Headers/StickHeader/StickyHeader';
 
 function App() {
   return (
