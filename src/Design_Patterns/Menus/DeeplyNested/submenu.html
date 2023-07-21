@@ -1,0 +1,13 @@
+<!-- define the shape of sub-menus and how they are added to html -->
+<!-- An Anchor Link with a Unordered List under it -->
+<!-- The ul has any number of li, each with its own anchor link AND/OR another ul -->
+<!-- This is a recursive way to keep adding this structure -->
+<!-- adding more li to an ul -->
+<li>
+    <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+    <ul class="sub-menu">
+      <li>
+        <a href="#" onclick="toggleSpecificSubmenu(event)">Sub-Submenu Generic</a>
+      </li>
+    </ul>
+  </li>

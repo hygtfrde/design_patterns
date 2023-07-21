@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="nav-menu-button">
+      <div class="nav-menu-line"></div>
+    </div>
+    
+    <nav class="nav" data-visible="false" role="navigation">
+
+      <li>
+        <a id="home" href="#">Home</a>
+        <ul class="sub-menu">
+          <li>
+            <a href="#">Submenu Generic</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a id="goods" href="#" onclick="toggleSpecificSubmenu(event)">Goods</a>
+        <ul class="sub-menu">
+
+          <li>
+            <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+            <ul class="sub-menu">
+              <li>
+                <a href="#" >Sub-Submenu Generic</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+            <ul class="sub-menu">
+              <li>
+                <a href="#" >Sub-Submenu Generic</a>
+              </li>
+
+              <li>
+                <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#" >Sub-Submenu Generic</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#" >Sub-Submenu Generic</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#" >Sub-Submenu Generic</a>
+                  </li>
+
+                  <li>
+                    <a href="#" onclick="toggleSpecificSubmenu(event)">Submenu Generic</a>
+                    <ul class="sub-menu">
+                      <li>
+                        <a href="#" >Sub-Submenu Generic</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
+      </li>
+
+    </nav>
+  </header>
+
+  <script src="main.js"></script>
+</body>
+</html>

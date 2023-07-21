@@ -1,0 +1,1 @@
+This can be solved discretely, if you know the number of menus and submenus, then each menu or submenu could get its own unique class or id, along with click event handlers for each one. Only each unique element's submenu would open or close (display toggling between block and none)
