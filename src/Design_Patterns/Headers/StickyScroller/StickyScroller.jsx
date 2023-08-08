@@ -1,27 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './StickyScroller.css';
-import Filler from '../../Constants/Filler';
 
 const StickyHeader = () => {
+  const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
+  const debounceTimerRef = useRef(null);
+
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  const scrollPosition = window.scrollY;
+
+
+  const handleScroll = () => {
+    if (stickyRef.current) {
+      const rect = stickyRef.current.getBoundingClientRect();
+      const halfwayPoint = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+      setIsSticky(rect.top <= 0 && window.scrollY <= halfwayPoint);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const maxScroll = 200;
-      setIsSticky(scrollPosition >= maxScroll);
-    };
+    const scrollListener = () => handleScroll(); // Using the memoized handleScroll function
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', scrollListener);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', scrollListener);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      clearTimeout(debounceTimerRef.current);
     };
-  }, []);
+  }, []); // No dependencies needed here
 
   return (
-    <header className={`sticky-header ${isSticky ? 'sticky' : ''}`}>
-      <h2>Sticky Scroller</h2>
-    </header>
+    <div className={`sticky-container ${isSticky ? 'sticky' : ''}`}>
+      <div ref={stickyRef} className="sticky-component">
+        <h2>Sticky Scroll</h2>
+      </div>
+    </div>
   );
 };
 

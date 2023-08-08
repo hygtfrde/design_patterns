@@ -1,15 +1,25 @@
-.sticky-header {
-    /* Define your header styles */
-    background-color: #fff;
-    padding: 20px;
-    transition: background-color 0.3s ease-in-out;
-  }
+.sticky-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+}
   
-  .sticky {
-    position: fixed;
+.sticky-component {
+    width: 300px; /* Adjust as needed */
+    padding: 20px;
+    background-color: rgb(196, 171, 171);
+    border: 1px solid gray;
+    transition: position 0.3s ease-in-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+  
+.sticky {
+    position: sticky;
     top: 0;
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.95);
-  }
+    z-index: 1;
+}
   
