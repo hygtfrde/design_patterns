@@ -1,0 +1,15 @@
+.sticky-header {
+    /* Define your header styles */
+    background-color: #fff;
+    padding: 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  

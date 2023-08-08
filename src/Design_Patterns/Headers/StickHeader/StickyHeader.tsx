@@ -1,12 +1,12 @@
 import React from 'react';
 import './StickyHeader.css';
-import Filler from './Filler';
+import Filler from '../../Constants/Filler';
 
 const StickyHeader = () => {
   return (
     <>
         <header className="sticky-header">
-        <h1>Sticky Header</h1>
+          <h1>Sticky Header</h1>
         </header>
         <Filler/>
     </>

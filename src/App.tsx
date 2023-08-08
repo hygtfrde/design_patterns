@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+import Filler from 'Design_Patterns/Constants/Filler';
 
-import Pattern from './Design_Patterns/Headers/StickHeader/StickyHeader';
+import Pattern from './Design_Patterns/Headers/StickyScroller/StickyScroller';
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
         <h1>Design Patterns</h1>
       </header>
       <Pattern/>
+      {[...Array(10)].map((i) => {
+        return <Filler key={i}/>
+      })}
     </div>
   );
 }
