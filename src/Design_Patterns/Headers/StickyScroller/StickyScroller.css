@@ -6,17 +6,18 @@
 }
   
 .sticky-component {
-    width: 300px; /* Adjust as needed */
+    width: 300px;
+    transition: position 0.3s ease-in-out, transform 0.3s ease-in-out;
     padding: 20px;
     background-color: rgb(196, 171, 171);
     border: 1px solid gray;
-    transition: position 0.3s ease-in-out;
     transform: translateZ(0);
     backface-visibility: hidden;
     will-change: transform;
 }
   
 .sticky {
+    transform: translateY(0);
     position: sticky;
     top: 0;
     width: 100%;

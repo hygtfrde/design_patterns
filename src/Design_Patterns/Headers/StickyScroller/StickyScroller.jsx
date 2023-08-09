@@ -14,12 +14,19 @@ const StickyHeader = () => {
   const handleScroll = () => {
     if (stickyRef.current) {
       const rect = stickyRef.current.getBoundingClientRect();
-      const halfwayPoint = (document.documentElement.scrollHeight - window.innerHeight) / 2;
-      setIsSticky(rect.top <= 0 && window.scrollY <= halfwayPoint);
+      const maximumScrollPoint = (document.documentElement.scrollHeight - window.innerHeight) / 4;
+      setIsSticky(rect.top <= 0 && window.scrollY <= maximumScrollPoint);
+      localStorage.setItem('scrollPosition', window.scrollY);
     }
   };
 
   useEffect(() => {
+    const savedScrollPosition = localStorage.getItem('scrollPosition');
+
+    if (savedScrollPosition !== null) {
+      window.scrollTo(0, parseInt(savedScrollPosition));
+    }
+    
     const scrollListener = () => handleScroll(); // Using the memoized handleScroll function
 
     window.addEventListener('scroll', scrollListener);
