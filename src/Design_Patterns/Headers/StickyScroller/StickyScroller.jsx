@@ -4,44 +4,48 @@ import './StickyScroller.css';
 const StickyHeader = () => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
-  const debounceTimerRef = useRef(null);
-  const savedScrollPosition = localStorage.getItem('scrollPosition');
-
-
-  // TODO: use const windowHeight = window.innerHeight;
-  // to determine DOM height to re-insert element at current scroll height
-
+  const [reinsertPosition, setReinsertPosition] = useState(null);
+  const [resetOriginalPosition, setResetOriginalPosition] = useState(false);
 
   const handleScroll = () => {
     const rect = stickyRef.current.getBoundingClientRect();
     const maximumScrollPoint = (document.documentElement.scrollHeight - window.innerHeight) / 8;
-    if (stickyRef.current) {
-      setIsSticky(rect.top <= 0 && window.scrollY <= maximumScrollPoint);
-      localStorage.setItem('scrollPosition', window.scrollY);
-    }
-    if (rect.top <= 0 && window.scrollY <= maximumScrollPoint) {
-        setIsSticky(true);
+
+    if (isSticky) {
+      if (window.scrollY <= maximumScrollPoint) {
+        setResetOriginalPosition(true);
+        setReinsertPosition(null);
+      } else if (window.scrollY > maximumScrollPoint && !reinsertPosition) {
+        setReinsertPosition(window.scrollY);
+        setResetOriginalPosition(false);
+      }
     } else {
-        setIsSticky(false);
+      setResetOriginalPosition(false);
     }
+
+    setIsSticky(rect.top <= 0 && window.scrollY <= maximumScrollPoint);
   };
 
   useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('scrollPosition');
-
-    if (savedScrollPosition !== null) {
-      window.scrollTo(0, parseInt(savedScrollPosition));
-    }
-
-    const scrollListener = () => handleScroll(); // Using the memoized handleScroll function
+    const scrollListener = () => handleScroll();
 
     window.addEventListener('scroll', scrollListener);
     return () => {
       window.removeEventListener('scroll', scrollListener);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      clearTimeout(debounceTimerRef.current);
     };
-  }, []); // No dependencies needed here
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSticky, reinsertPosition, resetOriginalPosition]);
+
+  useEffect(() => {
+    if (resetOriginalPosition) {
+      stickyRef.current.style.position = 'initial';
+      stickyRef.current.style.top = 'initial';
+    } else if (reinsertPosition !== null) {
+      const newPosition = reinsertPosition - (window.innerHeight / 2);
+      stickyRef.current.style.position = 'relative';
+      stickyRef.current.style.top = `${newPosition}px`;
+    }
+  }, [reinsertPosition, resetOriginalPosition]);
 
   return (
     <div className={`sticky-container ${isSticky ? 'sticky' : ''}`}>
