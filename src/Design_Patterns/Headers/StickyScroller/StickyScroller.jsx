@@ -5,18 +5,24 @@ const StickyHeader = () => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const debounceTimerRef = useRef(null);
+  const savedScrollPosition = localStorage.getItem('scrollPosition');
 
-  const windowHeight = window.innerHeight;
-  const documentHeight = document.documentElement.scrollHeight;
-  const scrollPosition = window.scrollY;
+
+  // TODO: use const windowHeight = window.innerHeight;
+  // to determine DOM height to re-insert element at current scroll height
 
 
   const handleScroll = () => {
+    const rect = stickyRef.current.getBoundingClientRect();
+    const maximumScrollPoint = (document.documentElement.scrollHeight - window.innerHeight) / 8;
     if (stickyRef.current) {
-      const rect = stickyRef.current.getBoundingClientRect();
-      const maximumScrollPoint = (document.documentElement.scrollHeight - window.innerHeight) / 4;
       setIsSticky(rect.top <= 0 && window.scrollY <= maximumScrollPoint);
       localStorage.setItem('scrollPosition', window.scrollY);
+    }
+    if (rect.top <= 0 && window.scrollY <= maximumScrollPoint) {
+        setIsSticky(true);
+    } else {
+        setIsSticky(false);
     }
   };
 
@@ -26,7 +32,7 @@ const StickyHeader = () => {
     if (savedScrollPosition !== null) {
       window.scrollTo(0, parseInt(savedScrollPosition));
     }
-    
+
     const scrollListener = () => handleScroll(); // Using the memoized handleScroll function
 
     window.addEventListener('scroll', scrollListener);
