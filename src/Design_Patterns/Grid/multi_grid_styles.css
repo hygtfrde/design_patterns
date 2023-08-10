@@ -1,0 +1,22 @@
+.multi-grid-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+  
+.multi-grid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    gap: 20px;
+}
+  
+.multi-grid-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+  
