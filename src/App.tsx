@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Filler from 'Design_Patterns/Constants/Filler';
-import Filler2 from 'Design_Patterns/Constants/Filler2';
+import Filler from './Design_Patterns/Constants/Filler';
+import Filler2 from './Design_Patterns/Constants/Filler2';
 
 import Pattern from './Design_Patterns/Headers/StickyScroller/StickyScroller';
 
