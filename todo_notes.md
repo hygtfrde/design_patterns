@@ -6,3 +6,4 @@
 - carousel component TSX
 - when scroll into view, fade in effect (also fade out effect?)
 - remember scroll position on refresh
+
