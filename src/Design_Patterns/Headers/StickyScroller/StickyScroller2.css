@@ -1,0 +1,21 @@
+.sticky-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+    height: 200vh; /* Adding some height to demonstrate scrolling */
+}
+  
+.sticky-component {
+    width: 300px;
+    padding: 20px;
+    background-color: rgb(196, 171, 171);
+    border: 1px solid gray;
+    transition: top 0.3s ease-in-out;
+}
+  
+.sticky {
+    position: fixed;
+    top: 0;
+}
+  

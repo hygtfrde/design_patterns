@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './StickyScroller.css';
 
-const StickyHeader = () => {
+const StickyScroller = () => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const [reinsertPosition, setReinsertPosition] = useState(null);
@@ -56,4 +56,4 @@ const StickyHeader = () => {
   );
 };
 
-export default StickyHeader;
+export default StickyScroller;
