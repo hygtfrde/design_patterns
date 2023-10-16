@@ -6,6 +6,7 @@
     width: 6px;
     background-color: #ccc;
     opacity: 0.7;
+    margin: 0 24px;
 }
 
 .scroll-bar {

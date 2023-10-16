@@ -23,12 +23,14 @@ const StatusBar = () => {
         };
       }, []);
     
-
-    <div>
-        <div className="scroll-status">
-            <div className="scroll-bar"></div>
+    return (
+        <div className='scroll-bar-container'>
+            <div className="scroll-status">
+                <div className="scroll-bar"></div>
+            </div>
         </div>
-    </div>
+    )
+
 }
 
 export default StatusBar

@@ -4,7 +4,7 @@ import Filler from './Design_Patterns/Constants/Filler';
 import Filler2 from './Design_Patterns/Constants/Filler2';
 import Filler3 from './Design_Patterns/Constants/Filler3';
 
-import Pattern from './Design_Patterns/Headers/StickyScroller/StickyScroller2';
+import Pattern from './Design_Patterns/ScrollBars/StatusBar/StatusBar';
 
 function App() {
   const elementsRef = useRef([] as any);
